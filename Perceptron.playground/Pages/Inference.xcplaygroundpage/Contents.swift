@@ -9,8 +9,8 @@ This page demonstrates how a perceptron makes predictions on new inputs.
 import Foundation
 
 struct Perceptron {
-    var weights: [Double]
-    var bias: Double
+    let weights: [Double]
+    let bias: Double
         
     func predict(_ inputs: [Double]) -> Int {
         precondition(inputs.count == weights.count, "Perceptron expects \(weights.count) inputs but received \(inputs.count)")
