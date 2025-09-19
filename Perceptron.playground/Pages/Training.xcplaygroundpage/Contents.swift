@@ -24,7 +24,7 @@ let orGateDataset: [([Double], Int)] = [
     ([1.0, 1.0], 1),
 ]
 
-// dataset for XOR-gate
+// dataset for XOR-gate (single-layer perceptron will never converge here)
 let xorGateDataset: [([Double], Int)] = [
     ([0.0, 0.0], -1),
     ([0.0, 1.0], 1),
@@ -37,6 +37,7 @@ struct Perceptron {
     var bias: Double
         
     func predict(_ inputs: [Double]) -> Int {
+        precondition(inputs.count == weights.count, "Perceptron expects \(weights.count) inputs but received \(inputs.count)")
         // Calculate Dot Product
         let weightedDotProduct = zip(inputs, weights)
             .map { $0 * $1 }

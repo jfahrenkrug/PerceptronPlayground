@@ -13,6 +13,7 @@ struct Perceptron {
     var bias: Double
         
     func predict(_ inputs: [Double]) -> Int {
+        precondition(inputs.count == weights.count, "Perceptron expects \(weights.count) inputs but received \(inputs.count)")
         // Calculate Dot Product
         let weightedDotProduct = zip(inputs, weights)
             .map { $0 * $1 }
@@ -21,10 +22,12 @@ struct Perceptron {
         // Add bias
         let weightedSum = weightedDotProduct + bias
         
-        print("inputs: \(inputs) -> dotProduct: \(weightedDotProduct), weighted sum: \(weightedSum)")
-        
         // Activation (above or below threshold?)
-        return weightedSum >= 0 ? 1 : -1
+        let output = weightedSum >= 0 ? 1 : -1
+        
+        print("inputs: \(inputs) -> dotProduct: \(weightedDotProduct), weighted sum: \(weightedSum), prediction: \(output)")
+        
+        return output
     }
 }
 
